@@ -41,7 +41,6 @@ services:
   memcached:
     container_name: memcached
     image: memcached:latest
-    ports:
-      - "11211:11211"
     environment:
       - MEMCACHED_MEMORY_LIMIT=1000
+    restart: unless-stopped
