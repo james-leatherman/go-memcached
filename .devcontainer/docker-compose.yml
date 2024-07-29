@@ -43,4 +43,5 @@ services:
     image: memcached:latest
     environment:
       - MEMCACHED_MEMORY_LIMIT=1000
+    network_mode: service:db
     restart: unless-stopped
