@@ -24,6 +24,10 @@ func verifyCache(c *fiber.Ctx) error {
 func main() {
 	app := fiber.New()
 
+	app.Get("/", func(c *fiber.Ctx) error {
+		return c.SendString("Here we go!")
+	})
+
 	app.Get("/:id", verifyCache, func(c *fiber.Ctx) error {
 		id := c.Params("id")
 		res, err := http.Get("https://jsonplaceholder.typicode.com/photos/" + id)
