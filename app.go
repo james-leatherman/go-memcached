@@ -7,6 +7,7 @@ import (
 	"github.com/bradfitz/gomemcache/memcache"
 	"github.com/gofiber/fiber/v2"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
+	fibertrace "gopkg.in/DataDog/dd-trace-go.v1/contrib/gofiber/fiber.v2"
 )
 
 var cache = memcache.New("localhost:11211")
@@ -32,6 +33,8 @@ func main() {
 	defer tracer.Stop()
 
 	app := fiber.New()
+
+	app.Use(fibertrace.Middleware())
 
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("Here we go!")
