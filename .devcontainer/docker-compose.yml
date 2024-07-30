@@ -45,3 +45,19 @@ services:
       - MEMCACHED_MEMORY_LIMIT=1000
     network_mode: service:db
     restart: unless-stopped
+
+  datadog-agent:
+    container_name: datadog-agent
+    image: "gcr.io/datadoghq/agent:latest"
+    pid: host
+    environment:
+      - DD_API_KEY=${DD_API_KEY}
+      - DD_APM_ENABLED=true
+      - DD_APM_NON_LOCAL_TRAFFIC=true
+      - DD_SITE=us5.datadoghq.com
+      - DD_GIT_REPOSITORY_URL=${DD_GIT_REPOSITORY_URL} 
+      - DD_GIT_COMMIT_SHA=${DD_GIT_COMMIT_SHA}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup:/host/sys/fs/cgroup:ro

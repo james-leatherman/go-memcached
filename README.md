@@ -29,6 +29,8 @@ To install and run this project locally, follow these steps:
 
 Once the server is running, you can interact with it using a memcached client library or the [telnet](https://en.wikipedia.org/wiki/Telnet) command.
 
+Once the dev container is started, install telnet with `sudo apt-get update && sudo apt-get install telnet`.
+
 Here's an example of how to set a key-value pair using telnet:
 
 ```
