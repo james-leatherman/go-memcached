@@ -6,6 +6,7 @@ import (
 
 	"github.com/bradfitz/gomemcache/memcache"
 	"github.com/gofiber/fiber/v2"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 var cache = memcache.New("localhost:11211")
@@ -22,6 +23,14 @@ func verifyCache(c *fiber.Ctx) error {
 }
 
 func main() {
+	tracer.Start(
+        tracer.WithAgentAddr("datadog-agent:8126"),
+		tracer.WithEnv("dev"),
+		tracer.WithService("go-memcached"),
+		tracer.WithServiceVersion("1.0"),
+	)
+	defer tracer.Stop()
+
 	app := fiber.New()
 
 	app.Get("/", func(c *fiber.Ctx) error {
