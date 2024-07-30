@@ -56,6 +56,7 @@ services:
       - DD_SITE=us5.datadoghq.com
       - DD_GIT_REPOSITORY_URL=${DD_GIT_REPOSITORY_URL}
       - DD_GIT_COMMIT_SHA=${DD_GIT_COMMIT_SHA}
+      - DD_SERVICE="go-memcached"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /proc/:/host/proc/:ro
