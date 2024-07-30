@@ -24,7 +24,7 @@ func verifyCache(c *fiber.Ctx) error {
 
 func main() {
 	tracer.Start(
-        tracer.WithAgentAddr("datadog-agent:8126"),
+		tracer.WithAgentAddr("datadog-agent:8126"),
 		tracer.WithEnv("dev"),
 		tracer.WithService("go-memcached"),
 		tracer.WithServiceVersion("1.0"),
