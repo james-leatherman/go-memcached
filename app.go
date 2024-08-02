@@ -41,18 +41,18 @@ func main() {
 		id := c.Params("id")
 		res, err := http.Get("https://jsonplaceholder.typicode.com/photos/" + id)
 		if err != nil {
-			panic(err)
+			return(err)
 		}
 
 		defer res.Body.Close()
 		body, err := io.ReadAll(res.Body)
 		if err != nil {
-			panic(err)
+			return(err)
 		}
 
 		cacheErr := cache.Set(&memcache.Item{Key: id, Value: body, Expiration: 10})
 		if cacheErr != nil {
-			panic(cacheErr)
+			return(cacheErr)
 		}
 
 		data := toJson(body)
