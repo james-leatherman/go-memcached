@@ -4,7 +4,7 @@ go 1.22.5
 
 require (
 	github.com/bradfitz/gomemcache v0.0.0-20230905024940-24af94b03874
-	github.com/gofiber/fiber/v2 v2.52.9
+	github.com/gofiber/fiber/v2 v2.52.12
 	gopkg.in/DataDog/dd-trace-go.v1 v1.66.0
 )
 
